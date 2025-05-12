@@ -9,11 +9,6 @@ class Course extends Model
 {
     use HasFactory;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<string>
-     */
     protected $fillable = [
         'name',
         'category_id',
@@ -22,13 +17,9 @@ class Course extends Model
         'is_deleted'
     ];
 
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array<string, string>
-     */
     protected $casts = [
         'price' => 'decimal:2',
+        'is_deleted' => 'boolean',
     ];
 
     public function category()
@@ -44,6 +35,11 @@ class Course extends Model
 
     public function coursedetails()
     {
-        return $this->hasMany(User::class);
+        return $this->hasMany(CourseDetail::class);
+    }
+
+    public function scopeNotDeleted($query)
+    {
+        return $query->where('is_deleted', false);
     }
 }

@@ -46,11 +46,4 @@ class AdminCategoryController extends Controller
         $category->update($request->all());
         return redirect()->route('admin.categories.index', ['category_id' => $id])->with('success', 'Category updated successfully.');
     }
-
-    public function destroy($id)
-    {
-        $category = Category::findOrFail($id);
-        $category->delete();
-        return redirect()->route('admin.categories.index')->with('success', 'Category deleted successfully.');
-    }
 }
