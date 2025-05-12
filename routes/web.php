@@ -11,24 +11,21 @@ use App\Http\Controllers\WelcomeController;
 
 use App\Http\Controllers\Admin\AdminCourseController;
 use App\Http\Controllers\Admin\AdminCategoryController;
-
+use App\Http\Controllers\Admin\AdminCourseDetailController;
 
 // Route::prefix('admin')->middleware(['auth'])->group(function () {
 //     Route::redirect('/', '/admin/courses')->name('admin.dashboard');
 //     Route::resource('courses', AdminCourseController::class)->names('admin.courses');
-// });
-
-// Route::prefix('admin')->group(function () {
-//     Route::redirect('/', '/admin/courses')->name('admin.dashboard');
-//     Route::resource('courses', AdminCourseController::class)->names('admin.courses');
 //     Route::resource('categories', AdminCategoryController::class)->names('admin.categories');
+//     Route::resource('course-details', AdminCourseDetailController::class)->names('admin.course-details');
 // });
-
 Route::prefix('admin')->group(function () {
     Route::redirect('/', '/admin/courses')->name('admin.dashboard');
     Route::resource('courses', AdminCourseController::class)->names('admin.courses');
     Route::resource('categories', AdminCategoryController::class)->names('admin.categories');
+    Route::resource('course-details', AdminCourseDetailController::class)->names('admin.course-details');
 });
+
 
 // Route::get('/', function () {
 //     return view('welcome');

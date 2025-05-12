@@ -11,14 +11,14 @@
         <div class="flex justify-between items-center">
             <h2 class="text-xl font-semibold text-gray-700">Categories List</h2>
             <a href="{{ route('admin.categories.create') }}"
-                class="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition-colors duration-200">
+                class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors duration-200">
                 Add New Category
             </a>
         </div>
         <div class="flex-1 bg-white rounded-lg shadow-md p-4 space-y-3">
             @forelse ($categories as $category)
             <a href="{{ route('admin.categories.index', ['category_id' => $category->id]) }}"
-                class="flex items-center p-3 rounded-lg {{ $selectedCategory && $selectedCategory->id == $category->id ? 'bg-indigo-50 border-l-4 border-indigo-600' : 'bg-gray-100' }} hover:bg-indigo-50 transition-colors duration-200">
+                class="flex items-center p-3 rounded-lg {{ $selectedCategory && $selectedCategory->id == $category->id ? 'bg-blue-100 border-l-4 border-blue-500' : 'bg-gray-50' }} hover:bg-blue-100 transition-colors duration-200">
                 <span class="font-medium text-gray-800">{{ $category->name }}</span>
             </a>
             @empty
@@ -42,17 +42,17 @@
                 @method('PUT')
                 <div class="mb-4">
                     <label for="name" class="block text-gray-700 font-semibold">Name</label>
-                    <input type="text" name="name" id="name" class="w-full p-3 border rounded-lg focus:ring focus:ring-indigo-300 @error('name') border-red-500 @enderror" value="{{ old('name', $selectedCategory->name) }}">
+                    <input type="text" name="name" id="name" class="w-full p-3 border rounded-lg focus:ring focus:ring-blue-200 @error('name') border-red-400 @enderror" value="{{ old('name', $selectedCategory->name) }}">
                     @error('name')
-                    <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                    <p class="text-red-400 text-sm mt-1">{{ $message }}</p>
                     @enderror
                 </div>
                 <div class="flex gap-4">
-                    <button type="submit" class="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition-colors duration-200">Update</button>
+                    <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors duration-200">Update</button>
                     <form action="{{ route('admin.categories.destroy', $selectedCategory->id) }}" method="POST" class="inline">
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition-colors duration-200" onclick="return confirm('Are you sure?')">Delete</button>
+                        <button type="submit" class="bg-red-400 text-white px-4 py-2 rounded-lg hover:bg-red-500 transition-colors duration-200" onclick="return confirm('Are you sure?')">Delete</button>
                     </form>
                 </div>
             </form>

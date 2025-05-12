@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\MockData\Category;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class AdminCategoryController extends Controller
@@ -14,7 +14,7 @@ class AdminCategoryController extends Controller
         $selectedCategory = null;
 
         if ($request->has('category_id')) {
-            $selectedCategory = Category::find($request->query('category_id'));
+            $selectedCategory = Category::findOrFail($request->query('category_id'));
         }
 
         return view('admin.categories.index', compact('categories', 'selectedCategory'));
@@ -31,67 +31,26 @@ class AdminCategoryController extends Controller
             'name' => 'required|string|max:255',
         ]);
 
-        $json = file_get_contents(storage_path('app/courses.json'));
-        $jsonData = json_decode($json, true);
-        $data = [
-            'id' => count($jsonData['categories']) + 1,
-            'name' => $request->input('name'),
-        ];
-        $jsonData['categories'][] = $data;
-        file_put_contents(storage_path('app/courses.json'), json_encode($jsonData, JSON_PRETTY_PRINT));
-
+        Category::create($request->all());
         return redirect()->route('admin.categories.index')->with('success', 'Category created successfully.');
-    }
-
-    public function show($id)
-    {
-        // Không cần vì tích hợp vào index
-    }
-
-    public function edit($id)
-    {
-        // Không cần vì tích hợp vào index
     }
 
     public function update(Request $request, $id)
     {
-        $category = Category::find($id);
-        if (!$category) {
-            abort(404);
-        }
+        $category = Category::findOrFail($id);
 
         $request->validate([
             'name' => 'required|string|max:255',
         ]);
 
-        $json = file_get_contents(storage_path('app/courses.json'));
-        $jsonData = json_decode($json, true);
-        foreach ($jsonData['categories'] as &$cat) {
-            if ($cat['id'] == $id) {
-                $cat['name'] = $request->input('name');
-                break;
-            }
-        }
-        file_put_contents(storage_path('app/courses.json'), json_encode($jsonData, JSON_PRETTY_PRINT));
-
+        $category->update($request->all());
         return redirect()->route('admin.categories.index', ['category_id' => $id])->with('success', 'Category updated successfully.');
     }
 
     public function destroy($id)
     {
-        $category = Category::find($id);
-        if (!$category) {
-            abort(404);
-        }
-
-        $json = file_get_contents(storage_path('app/courses.json'));
-        $jsonData = json_decode($json, true);
-        $jsonData['categories'] = array_filter($jsonData['categories'], function ($cat) use ($id) {
-            return $cat['id'] != $id;
-        });
-        $jsonData['categories'] = array_values($jsonData['categories']);
-        file_put_contents(storage_path('app/courses.json'), json_encode($jsonData, JSON_PRETTY_PRINT));
-
+        $category = Category::findOrFail($id);
+        $category->delete();
         return redirect()->route('admin.categories.index')->with('success', 'Category deleted successfully.');
     }
 }

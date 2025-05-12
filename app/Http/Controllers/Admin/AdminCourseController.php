@@ -3,18 +3,18 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\MockData\Course;
+use App\Models\Course;
 use Illuminate\Http\Request;
 
 class AdminCourseController extends Controller
 {
     public function index(Request $request)
     {
-        $courses = Course::all();
+        $courses = Course::with('category')->get();
         $selectedCourse = null;
 
         if ($request->has('course_id')) {
-            $selectedCourse = Course::find($request->query('course_id'));
+            $selectedCourse = Course::with('category')->findOrFail($request->query('course_id'));
         }
 
         return view('admin.courses.index', compact('courses', 'selectedCourse'));
@@ -29,7 +29,7 @@ class AdminCourseController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
-            'category_id' => 'required|integer|exists:App\MockData\Category,id',
+            'category_id' => 'required|exists:categories,id',
             'grade' => 'required|string|max:255',
             'price' => 'required|numeric|min:0',
         ]);
@@ -38,26 +38,13 @@ class AdminCourseController extends Controller
         return redirect()->route('admin.courses.index')->with('success', 'Course created successfully.');
     }
 
-    public function show($id)
-    {
-        // Không cần vì đã tích hợp vào index
-    }
-
-    public function edit($id)
-    {
-        // Không cần vì đã tích hợp vào index
-    }
-
     public function update(Request $request, $id)
     {
-        $course = Course::find($id);
-        if (!$course) {
-            abort(404);
-        }
+        $course = Course::findOrFail($id);
 
         $request->validate([
             'name' => 'required|string|max:255',
-            'category_id' => 'required|integer|exists:App\MockData\Category,id',
+            'category_id' => 'required|exists:categories,id',
             'grade' => 'required|string|max:255',
             'price' => 'required|numeric|min:0',
         ]);
@@ -68,11 +55,7 @@ class AdminCourseController extends Controller
 
     public function destroy($id)
     {
-        $course = Course::find($id);
-        if (!$course) {
-            abort(404);
-        }
-
+        $course = Course::findOrFail($id);
         $course->delete();
         return redirect()->route('admin.courses.index')->with('success', 'Course deleted successfully.');
     }
