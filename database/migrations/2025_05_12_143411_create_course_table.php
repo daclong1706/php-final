@@ -15,6 +15,7 @@ return new class extends Migration
             $table->string('grade')->nullable(); // Có thể đổi thành integer nếu grade là số
             $table->decimal('price', 8, 2)->nullable();
             $table->timestamps();
+            $table->boolean('is_deleted');
         });
     }
 

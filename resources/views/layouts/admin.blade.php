@@ -12,7 +12,7 @@
 <body class="bg-gray-50 font-sans">
     <div class="flex min-h-screen">
         <!-- Sidebar -->
-        <div class="w-64 bg-gradient-to-b from-blue-600 to-blue-500 text-black p-6 shadow-lg">
+        <div class="w-64 bg-gradient-to-b from-blue-600 to-blue-500 text-white p-6 shadow-lg">
             <h2 class="text-2xl font-bold mb-8 tracking-wide">Admin Panel</h2>
             <ul class="space-y-2">
                 <li>
@@ -25,6 +25,12 @@
                     <a href="{{ route('admin.categories.index') }}"
                         class="block p-3 rounded-lg hover:bg-blue-400 transition-colors duration-200 {{ request()->routeIs('admin.categories.*') ? 'bg-blue-400' : '' }}">
                         <span class="text-sm font-medium">Categories</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('admin.course-details.index') }}"
+                        class="block p-3 rounded-lg hover:bg-blue-400 transition-colors duration-200 {{ request()->routeIs('admin.course-details.*') ? 'bg-blue-400' : '' }}">
+                        <span class="text-sm font-medium">Course Details</span>
                     </a>
                 </li>
                 <li>

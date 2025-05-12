@@ -11,14 +11,14 @@
         <div class="flex justify-between items-center">
             <h2 class="text-xl font-semibold text-gray-700">Courses List</h2>
             <a href="{{ route('admin.courses.create') }}"
-                class="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition-colors duration-200">
+                class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors duration-200">
                 Add New Course
             </a>
         </div>
         <div class="flex-1 bg-white rounded-lg shadow-md p-4 space-y-3">
             @forelse ($courses as $course)
             <a href="{{ route('admin.courses.index', ['course_id' => $course->id]) }}"
-                class="flex items-center p-3 rounded-lg {{ $selectedCourse && $selectedCourse->id == $course->id ? 'bg-indigo-50 border-l-4 border-indigo-600' : 'bg-gray-100' }} hover:bg-indigo-50 transition-colors duration-200">
+                class="flex items-center p-3 rounded-lg {{ $selectedCourse && $selectedCourse->id == $course->id ? 'bg-blue-100 border-l-4 border-blue-500' : 'bg-gray-50' }} hover:bg-blue-100 transition-colors duration-200">
                 <div class="flex-1">
                     <h3 class="font-medium text-gray-800">{{ $course->name }}</h3>
                     <p class="text-sm text-gray-600">{{ $course->category->name }} - Grade: {{ $course->grade }}</p>
@@ -48,43 +48,43 @@
                 @method('PUT')
                 <div class="mb-4">
                     <label for="name" class="block text-gray-700 font-semibold">Name</label>
-                    <input type="text" name="name" id="name" class="w-full p-3 border rounded-lg focus:ring focus:ring-indigo-300 @error('name') border-red-500 @enderror" value="{{ old('name', $selectedCourse->name) }}">
+                    <input type="text" name="name" id="name" class="w-full p-3 border rounded-lg focus:ring focus:ring-blue-200 @error('name') border-red-400 @enderror" value="{{ old('name', $selectedCourse->name) }}">
                     @error('name')
-                    <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                    <p class="text-red-400 text-sm mt-1">{{ $message }}</p>
                     @enderror
                 </div>
                 <div class="mb-4">
                     <label for="category_id" class="block text-gray-700 font-semibold">Category</label>
-                    <select name="category_id" id="category_id" class="w-full p-3 border rounded-lg focus:ring focus:ring-indigo-300 @error('category_id') border-red-500 @enderror">
+                    <select name="category_id" id="category_id" class="w-full p-3 border rounded-lg focus:ring focus:ring-blue-200 @error('category_id') border-red-400 @enderror">
                         <option value="">Select Category</option>
-                        @foreach (\App\MockData\Category::all() as $category)
+                        @foreach (\App\Models\Category::all() as $category)
                         <option value="{{ $category->id }}" {{ old('category_id', $selectedCourse->category_id) == $category->id ? 'selected' : '' }}>{{ $category->name }}</option>
                         @endforeach
                     </select>
                     @error('category_id')
-                    <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                    <p class="text-red-400 text-sm mt-1">{{ $message }}</p>
                     @enderror
                 </div>
                 <div class="mb-4">
                     <label for="grade" class="block text-gray-700 font-semibold">Grade</label>
-                    <input type="text" name="grade" id="grade" class="w-full p-3 border rounded-lg focus:ring focus:ring-indigo-300 @error('grade') border-red-500 @enderror" value="{{ old('grade', $selectedCourse->grade) }}">
+                    <input type="text" name="grade" id="grade" class="w-full p-3 border rounded-lg focus:ring focus:ring-blue-200 @error('grade') border-red-400 @enderror" value="{{ old('grade', $selectedCourse->grade) }}">
                     @error('grade')
-                    <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                    <p class="text-red-400 text-sm mt-1">{{ $message }}</p>
                     @enderror
                 </div>
                 <div class="mb-4">
                     <label for="price" class="block text-gray-700 font-semibold">Price</label>
-                    <input type="number" step="0.01" name="price" id="price" class="w-full p-3 border rounded-lg focus:ring focus:ring-indigo-300 @error('price') border-red-500 @enderror" value="{{ old('price', $selectedCourse->price) }}">
+                    <input type="number" step="0.01" name="price" id="price" class="w-full p-3 border rounded-lg focus:ring focus:ring-blue-200 @error('price') border-red-400 @enderror" value="{{ old('price', $selectedCourse->price) }}">
                     @error('price')
-                    <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                    <p class="text-red-400 text-sm mt-1">{{ $message }}</p>
                     @enderror
                 </div>
                 <div class="flex gap-4">
-                    <button type="submit" class="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition-colors duration-200">Update</button>
+                    <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors duration-200">Update</button>
                     <form action="{{ route('admin.courses.destroy', $selectedCourse->id) }}" method="POST" class="inline">
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition-colors duration-200" onclick="return confirm('Are you sure?')">Delete</button>
+                        <button type="submit" class="bg-red-400 text-white px-4 py-2 rounded-lg hover:bg-red-500 transition-colors duration-200" onclick="return confirm('Are you sure?')">Delete</button>
                     </form>
                 </div>
             </form>

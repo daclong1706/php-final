@@ -18,7 +18,8 @@ class Course extends Model
         'name',
         'category_id',
         'grade',
-        'price'
+        'price',
+        'is_deleted'
     ];
 
     /**
