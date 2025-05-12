@@ -40,4 +40,9 @@ class Course extends Model
         return $this->belongsToMany(User::class)
             ->withTimestamps();
     }
+
+    public function coursedetails()
+    {
+        return $this->hasMany(User::class);
+    }
 }
