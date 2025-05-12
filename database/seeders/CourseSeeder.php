@@ -8,9 +8,6 @@ use Illuminate\Database\Seeder;
 
 class CourseSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
     public function run(): void
     {
         $categories = Category::all();
@@ -25,35 +22,35 @@ class CourseSeeder extends Seeder
                 'category_id' => $categories->where('name', 'Toán')->first()->id,
                 'grade' => '10',
                 'price' => 99.99,
-                'is_deleted' => FALSE
+                'is_deleted' => false,
             ],
             [
                 'name' => 'Vật Lý 11',
                 'category_id' => $categories->where('name', 'Lý')->first()->id,
                 'grade' => '11',
                 'price' => 149.99,
-                'is_deleted' => FALSE
+                'is_deleted' => false,
             ],
             [
                 'name' => 'Hóa Học 12',
                 'category_id' => $categories->where('name', 'Hóa')->first()->id,
                 'grade' => '12',
                 'price' => 129.99,
-                'is_deleted' => FALSE
+                'is_deleted' => false,
             ],
             [
                 'name' => 'Ngữ Văn 10',
                 'category_id' => $categories->where('name', 'Văn')->first()->id,
                 'grade' => '10',
                 'price' => 89.99,
-                'is_deleted' => FALSE
+                'is_deleted' => false,
             ],
             [
                 'name' => 'Tiếng Anh 11',
                 'category_id' => $categories->where('name', 'Anh')->first()->id,
                 'grade' => '11',
                 'price' => 109.99,
-                'is_deleted' => FALSE
+                'is_deleted' => false,
             ],
         ];
 

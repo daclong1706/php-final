@@ -9,11 +9,6 @@ class CourseDetail extends Model
 {
     use HasFactory;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<string>
-     */
     protected $fillable = [
         'name',
         'course_id',
@@ -21,7 +16,7 @@ class CourseDetail extends Model
         'description'
     ];
 
-    public function course() // n-1 course
+    public function course()
     {
         return $this->belongsTo(Course::class);
     }

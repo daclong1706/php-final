@@ -10,10 +10,10 @@ return new class extends Migration
     {
         Schema::create('course_details', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('course_id')->constrained('courses')->onDelete('cascade');
-            $table->string('name')->nullable();
-            $table->text('content')->nullable();
-            $table->text('description')->nullable();
+            $table->string('name');
+            $table->foreignId('course_id')->constrained()->onDelete('cascade');
+            $table->text('content');
+            $table->text('description');
             $table->timestamps();
         });
     }
