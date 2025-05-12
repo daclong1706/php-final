@@ -9,6 +9,27 @@ use App\Http\Controllers\VNPayController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WelcomeController;
 
+use App\Http\Controllers\Admin\AdminCourseController;
+use App\Http\Controllers\Admin\AdminCategoryController;
+
+
+// Route::prefix('admin')->middleware(['auth'])->group(function () {
+//     Route::redirect('/', '/admin/courses')->name('admin.dashboard');
+//     Route::resource('courses', AdminCourseController::class)->names('admin.courses');
+// });
+
+// Route::prefix('admin')->group(function () {
+//     Route::redirect('/', '/admin/courses')->name('admin.dashboard');
+//     Route::resource('courses', AdminCourseController::class)->names('admin.courses');
+//     Route::resource('categories', AdminCategoryController::class)->names('admin.categories');
+// });
+
+Route::prefix('admin')->group(function () {
+    Route::redirect('/', '/admin/courses')->name('admin.dashboard');
+    Route::resource('courses', AdminCourseController::class)->names('admin.courses');
+    Route::resource('categories', AdminCategoryController::class)->names('admin.categories');
+});
+
 // Route::get('/', function () {
 //     return view('welcome');
 // })->name('welcome');
@@ -33,6 +54,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/vnpay/create-payment', [VNPayController::class, 'createPayment'])->name('vnpay.create-payment');
     Route::get('/vnpay/return', [VNPayController::class, 'return'])->name('vnpay.return');
 });
+
 // Route::post('/vnpay/ipn', [VNPayController::class, 'ipn'])->name('vnpay.ipn');
 //GET ERROR WHEN PLACING THESE ROUTE
 // Route::middleware(['auth'])->group(function () {
