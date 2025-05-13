@@ -62,6 +62,6 @@ Route::middleware(['auth'])->group(function () {
 //     Route::get('/vnpay/return', [VNPayController::class, 'return'])->name('vnpay.return');
 // });
 
-Route::get('/course/{course}', [CourseController::class, 'show'])->name('course.show');
+Route::get('/course/{course_id}', [CourseController::class, 'show'])->name('course.show');
 require __DIR__ . '/auth.php';
 Route::get('/courses/search', [CourseController::class, 'search'])->name('course.search');

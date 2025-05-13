@@ -1,3 +1,7 @@
+@if($course)
+    <!-- Nội dung hiện tại của view -->
+
+
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
@@ -12,7 +16,7 @@
                     <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
                         <!-- Left Column - Video and Details -->
                         <div class="lg:col-span-2">
-                            @if($course->video_url)
+                            @if($course->content)
                             <div class="rounded-xl overflow-hidden shadow-lg mb-6">
                                 @php
                                 $videoId = '';
@@ -61,6 +65,20 @@
                             <div class="mb-8">
                                 <h3 class="text-lg font-semibold mb-4 text-gray-800">Nội dung khóa học</h3>
                                 <div class="space-y-3">
+                                    @forelse($course->coursedetails as $index => $detail)
+                                        <div class="border border-gray-200 rounded-lg overflow-hidden">
+                                            <div class="bg-gray-50 px-4 py-3 flex justify-between items-center cursor-pointer hover:bg-gray-100">
+                                                <div class="font-medium">{{ $index + 1 }}. {{ $detail->name }}</div>
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                                                </svg>
+                                            </div>
+                                        </div>
+                                    @empty
+                                        <p class="text-gray-600">Chưa có nội dung chi tiết cho khóa học này.</p>
+                                    @endforelse
+                                </div>
+                                <!-- <div class="space-y-3">
                                     <div class="border border-gray-200 rounded-lg overflow-hidden">
                                         <div class="bg-gray-50 px-4 py-3 flex justify-between items-center cursor-pointer hover:bg-gray-100">
                                             <div class="font-medium">1. Giới thiệu khóa học</div>
@@ -85,7 +103,7 @@
                                             </svg>
                                         </div>
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                         
@@ -188,3 +206,6 @@
         </div>
     </div>
 </x-app-layout>
+@else
+    <p>Khóa học không tồn tại.</p>
+@endif
