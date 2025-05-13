@@ -33,7 +33,7 @@
                             @endif
 
                             <h1 class="text-2xl font-bold text-gray-800 mb-4">{{ $course->name }}</h1>
-                            
+
                             <div class="flex items-center mb-4 text-sm text-gray-600">
                                 <div class="flex items-center mr-4">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-500 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -54,14 +54,14 @@
                                     <span>10 giờ học</span>
                                 </div>
                             </div>
-                            
+
                             <div class="mb-8">
                                 <h3 class="text-lg font-semibold mb-2 text-gray-800">Mô tả khóa học</h3>
                                 <p class="text-gray-600">
                                     {{ $course->description ?? 'Khóa học này sẽ giúp bạn nắm vững kiến thức và kỹ năng cần thiết để thành công trong môn học. Được thiết kế bởi các giảng viên có nhiều kinh nghiệm, khóa học cung cấp nội dung chất lượng cao và bài tập thực hành phong phú.' }}
                                 </p>
                             </div>
-                            
+
                             <div class="mb-8">
                                 <h3 class="text-lg font-semibold mb-4 text-gray-800">Nội dung khóa học</h3>
                                 <div class="space-y-3">
@@ -106,7 +106,7 @@
                                 </div> -->
                             </div>
                         </div>
-                        
+
                         <!-- Right Column - Price and CTA -->
                         <div class="lg:col-span-1">
                             <div class="border border-gray-200 rounded-xl shadow-sm p-6 sticky top-24">
@@ -119,7 +119,7 @@
                                         <span>Truy cập trọn đời</span>
                                     </div>
                                 </div>
-                                
+
                                 @auth
                                     @if(!auth()->user()->courses->contains($course->id))
                                     <form action="{{ route('cart.add', $course) }}" method="POST" class="mb-4">
@@ -152,7 +152,7 @@
                                     Đăng nhập để đăng ký
                                 </a>
                                 @endauth
-                                
+
                                 <div class="divide-y divide-gray-200">
                                     <div class="py-4">
                                         <h4 class="font-medium text-gray-800 mb-2">Khóa học này bao gồm:</h4>
