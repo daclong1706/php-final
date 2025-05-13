@@ -11,9 +11,13 @@ use Illuminate\View\View;
 
 class CourseController extends Controller
 {
-    public function show(Course $course): View
+    // Course detail
+    public function show($course_id): View
     {
-        return view('course.show', ['course' => $course]);
+        $course = Course::with(['category', 'coursedetails'])->notDeleted()
+            ->findOrFail($course_id);
+
+        return view('course.show', compact('course'));
     }
 
     public function search(Request $request)

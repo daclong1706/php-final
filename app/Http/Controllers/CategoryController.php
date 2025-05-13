@@ -11,7 +11,7 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = Category::all();
-        $courses = Course::all();
+        $courses = Course::with('category')->notDeleted()->get();
 
         return view('categories.index', compact('categories', 'courses'));
     }
