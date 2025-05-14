@@ -53,6 +53,7 @@ Route::middleware('auth')->group(function () {
 Route::middleware(['auth'])->group(function () {
     Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
     Route::post('/cart/{course}', [CartController::class, 'add'])->name('cart.add');
+    Route::post('/cart/buy/{course}', [CartController::class, 'buy'])->name('cart.buy');
     Route::delete('/cart/{course}', [CartController::class, 'remove'])->name('cart.remove');
 
     Route::post('/vnpay/create-payment', [VNPayController::class, 'createPayment'])->name('vnpay.create-payment');

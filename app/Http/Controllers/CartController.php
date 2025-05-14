@@ -14,8 +14,8 @@ class CartController extends Controller
         $cartItems = Cart::where('user_id', auth()->id())
             ->with('course')
             ->get();
-            
-        $total = $cartItems->sum(function($item) {
+
+        $total = $cartItems->sum(function ($item) {
             return $item->course->price;
         });
 
@@ -39,5 +39,17 @@ class CartController extends Controller
             ->delete();
 
         return redirect()->back()->with('success', 'Đã xóa khóa học khỏi giỏ hàng');
+    }
+
+    public function buy(Course $course)
+    {
+
+        Cart::firstOrCreate([
+            'user_id' => auth()->id(),
+            'course_id' => $course->id,
+        ]);
+
+
+        return redirect()->route('cart.index');
     }
 }
