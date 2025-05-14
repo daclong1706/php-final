@@ -1,7 +1,4 @@
 @if($course)
-    <!-- Nội dung hiện tại của view -->
-
-
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
@@ -9,28 +6,25 @@
         </h2>
     </x-slot>
 
-    <div class="py-12 pt-24">
+    <div class="py-8">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
                     <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
                         <!-- Left Column - Video and Details -->
                         <div class="lg:col-span-2">
-                            @if($course->content)
+                            @php
+                            $videoId = '';
+                            $thumbnailUrl = asset('images/placeholder-video.jpg'); // Ảnh nền mặc định nếu không có video
+                            if (isset($course->coursedetails[0]) && preg_match('/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/', $course->coursedetails[0]->content, $match)) {
+                            $videoId = $match[1];
+                            $thumbnailUrl = "https://img.youtube.com/vi/{$videoId}/hqdefault.jpg"; // Lấy thumbnail từ YouTube
+                            }
+                            @endphp
+
                             <div class="rounded-xl overflow-hidden shadow-lg mb-6">
-                                @php
-                                $videoId = '';
-                                if (preg_match('/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/', $course->video_url, $match)) {
-                                $videoId = $match[1];
-                                }
-                                @endphp
-                                <iframe src="https://www.youtube.com/embed/{{ $videoId }}" class="w-full aspect-video"
-                                    frameborder="0"
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                    allowfullscreen>
-                                </iframe>
+                                <img src="{{ $thumbnailUrl }}" alt="Video Thumbnail" class="w-full aspect-video object-cover">
                             </div>
-                            @endif
 
                             <h1 class="text-2xl font-bold text-gray-800 mb-4">{{ $course->name }}</h1>
 
@@ -66,50 +60,43 @@
                                 <h3 class="text-lg font-semibold mb-4 text-gray-800">Nội dung khóa học</h3>
                                 <div class="space-y-3">
                                     @forelse($course->coursedetails as $index => $detail)
-                                        <div class="border border-gray-200 rounded-lg overflow-hidden">
-                                            <div class="bg-gray-50 px-4 py-3 flex justify-between items-center cursor-pointer hover:bg-gray-100">
-                                                <div class="font-medium">{{ $index + 1 }}. {{ $detail->name }}</div>
-                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                                                </svg>
+                                    @php
+                                    $detailVideoId = '';
+                                    $detailThumbnailUrl = asset('images/placeholder-video.jpg');
+                                    if (preg_match('/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/', $detail->content ?? '', $match)) {
+                                    $detailVideoId = $match[1];
+                                    $detailThumbnailUrl = "https://img.youtube.com/vi/{$detailVideoId}/hqdefault.jpg";
+                                    }
+                                    @endphp
+
+                                    <div x-data="{ open: false }" class="border border-gray-200 rounded-lg overflow-hidden">
+                                        <!-- Header clickable area -->
+                                        <button @click="open = !open" class="w-full bg-gray-50 px-4 py-3 flex justify-between items-center cursor-pointer hover:bg-gray-100 focus:outline-none">
+                                            <div class="font-medium text-left">{{ $index + 1 }}. {{ $detail->name }}</div>
+                                            <svg :class="{'transform rotate-180': open}" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                                            </svg>
+                                        </button>
+
+                                        <!-- Collapsible content -->
+                                        <div x-show="open" x-collapse class="p-4 bg-white border-t border-gray-200">
+                                            <div class="rounded-xl overflow-hidden shadow-md mb-2">
+                                                <img src="{{ $detailThumbnailUrl }}" alt="Detail Video Thumbnail" class="w-full aspect-video object-cover">
                                             </div>
+                                            <p class="text-gray-600 text-sm">{{ $detail->content ?? 'Không có nội dung chi tiết.' }}</p>
                                         </div>
+                                    </div>
                                     @empty
-                                        <p class="text-gray-600">Chưa có nội dung chi tiết cho khóa học này.</p>
+                                    <p class="text-gray-600">Chưa có nội dung chi tiết cho khóa học này.</p>
                                     @endforelse
+
                                 </div>
-                                <!-- <div class="space-y-3">
-                                    <div class="border border-gray-200 rounded-lg overflow-hidden">
-                                        <div class="bg-gray-50 px-4 py-3 flex justify-between items-center cursor-pointer hover:bg-gray-100">
-                                            <div class="font-medium">1. Giới thiệu khóa học</div>
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                                            </svg>
-                                        </div>
-                                    </div>
-                                    <div class="border border-gray-200 rounded-lg overflow-hidden">
-                                        <div class="bg-gray-50 px-4 py-3 flex justify-between items-center cursor-pointer hover:bg-gray-100">
-                                            <div class="font-medium">2. Kiến thức cơ bản</div>
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                                            </svg>
-                                        </div>
-                                    </div>
-                                    <div class="border border-gray-200 rounded-lg overflow-hidden">
-                                        <div class="bg-gray-50 px-4 py-3 flex justify-between items-center cursor-pointer hover:bg-gray-100">
-                                            <div class="font-medium">3. Bài tập thực hành</div>
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                                            </svg>
-                                        </div>
-                                    </div>
-                                </div> -->
                             </div>
                         </div>
 
                         <!-- Right Column - Price and CTA -->
                         <div class="lg:col-span-1">
-                            <div class="border border-gray-200 rounded-xl shadow-sm p-6 sticky top-24">
+                            <div class="border border-gray-200 rounded-xl shadow-sm p-6 sticky">
                                 <div class="mb-4">
                                     <div class="text-3xl font-bold text-blue-600 mb-2">{{ number_format($course->price) }} VND</div>
                                     <div class="flex items-center text-sm text-gray-500">
@@ -121,29 +108,29 @@
                                 </div>
 
                                 @auth
-                                    @if(!auth()->user()->courses->contains($course->id))
-                                    <form action="{{ route('cart.add', $course) }}" method="POST" class="mb-4">
-                                        @csrf
-                                        <button type="submit"
-                                            class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-lg transition duration-150 shadow-md hover:shadow-lg flex items-center justify-center">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
-                                            </svg>
-                                            Thêm vào giỏ hàng
-                                        </button>
-                                    </form>
-                                    <button type="button" class="w-full border border-blue-600 text-blue-600 hover:bg-blue-50 font-bold py-3 px-4 rounded-lg transition duration-150 mb-6">
-                                        Mua ngay
-                                    </button>
-                                    @else
-                                    <a href="#" class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-4 rounded-lg transition duration-150 shadow-md hover:shadow-lg flex items-center justify-center mb-6">
+                                @if(!auth()->user()->courses->contains($course->id))
+                                <form action="{{ route('cart.add', $course) }}" method="POST" class="mb-4">
+                                    @csrf
+                                    <button type="submit"
+                                        class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-lg transition duration-150 shadow-md hover:shadow-lg flex items-center justify-center">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
                                         </svg>
-                                        Bắt đầu học
-                                    </a>
-                                    @endif
+                                        Thêm vào giỏ hàng
+                                    </button>
+                                </form>
+                                <button type="button" class="w-full border border-blue-600 text-blue-600 hover:bg-blue-50 font-bold py-3 px-4 rounded-lg transition duration-150 mb-6">
+                                    Mua ngay
+                                </button>
+                                @else
+<a href="{{ route('course.learn', $course->id) }}" class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-4 rounded-lg transition duration-150 shadow-md hover:shadow-lg flex items-center justify-center mb-6">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+    </svg>
+    Bắt đầu học
+</a>
+                                @endif
                                 @else
                                 <a href="{{ route('login') }}" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-lg transition duration-150 shadow-md hover:shadow-lg flex items-center justify-center mb-6">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -207,5 +194,5 @@
     </div>
 </x-app-layout>
 @else
-    <p>Khóa học không tồn tại.</p>
+<p>Khóa học không tồn tại.</p>
 @endif

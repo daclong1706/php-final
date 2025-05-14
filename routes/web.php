@@ -5,6 +5,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\DashBoardController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\TeamsController;
 use App\Http\Controllers\VNPayController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WelcomeController;
@@ -26,7 +27,7 @@ use App\Http\Controllers\OrderController;
 // });
 
 Route::prefix('admin')->group(function () {
-    Route::redirect('/', '/admin/courses')->name('admin.dashboard');
+    Route::redirect('/', '/admin/orders')->name('admin.orders');
     Route::resource('courses', AdminCourseController::class)->names('admin.courses')->except('show');
     Route::resource('categories', AdminCategoryController::class)->names('admin.categories')->except(['show', 'destroy']);
     Route::get('orders', [OrderController::class, 'index'])->name('admin.orders');
@@ -36,6 +37,7 @@ Route::prefix('admin')->group(function () {
 //     return view('welcome');
 // })->name('welcome');
 Route::get('/', [WelcomeController::class, 'index'])->name('welcome');
+Route::view('/teams', 'teams')->name('teams');
 
 Route::get('/categories', [CategoryController::class, 'index'])->name('category.index');
 Route::get('/categories/filter', [CategoryController::class, 'filter'])->name('category.filter');
@@ -55,9 +57,8 @@ Route::middleware(['auth'])->group(function () {
 
     Route::post('/vnpay/create-payment', [VNPayController::class, 'createPayment'])->name('vnpay.create-payment');
     Route::get('/vnpay/return', [VNPayController::class, 'return'])->name('vnpay.return');
-
+    Route::get('/course/{id}/learn', [CourseController::class, 'startLearning'])->name('course.learn');
     Route::get('/profile/course', [CourseController::class, 'index'])->name('course.index');
-    Route::get('/profile/course/{course_id}', [CourseController::class, 'showcourseuser'])->name('profile.course.show');
 });
 
 // Route::post('/vnpay/ipn', [VNPayController::class, 'ipn'])->name('vnpay.ipn');

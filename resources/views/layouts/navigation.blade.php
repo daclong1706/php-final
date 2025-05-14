@@ -1,6 +1,6 @@
 <nav x-data="{ open: false }" class="bg-white border-b fixed w-full border-gray-100 shadow-sm z-50">
     <!-- Primary Navigation Menu -->
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
             <div class="flex">
                 <!-- Logo -->
@@ -24,13 +24,13 @@
                     <x-nav-link :href="route('category.index')" :active="request()->routeIs('category.index')" class="text-gray-700 hover:text-indigo-600 transition-colors duration-300 font-medium">
                         {{ __('Danh mục') }}
                     </x-nav-link>
-
-                    <x-nav-link href="#" class="text-gray-700 hover:text-indigo-600 transition-colors duration-300 font-medium">
-                        {{ __('Khóa học mới') }}
+                    @auth
+                    <x-nav-link :href="route('course.index')" :active="request()->routeIs('course.index')" class="text-gray-700 hover:text-indigo-600 transition-colors duration-300 font-medium">
+                        {{ __('Khóa học của tôi') }}
                     </x-nav-link>
-
-                    <x-nav-link href="#" class="text-gray-700 hover:text-indigo-600 transition-colors duration-300 font-medium">
-                        {{ __('Giảng viên') }}
+                @endauth
+                    <x-nav-link :href="route('teams')" :active="request()->routeIs('teams')" class="text-gray-700 hover:text-indigo-600 transition-colors duration-300 font-medium">
+                        {{ __('Đội ngũ') }}
                     </x-nav-link>
                 </div>
             </div>

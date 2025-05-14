@@ -15,10 +15,10 @@
                             @foreach($cartItems as $item)
                                 <div class="flex flex-col md:flex-row md:justify-between md:items-center py-6 border-b border-gray-100 gap-4">
                                     <div class="flex flex-col md:flex-row items-start md:items-center gap-4">
-                                        @if($item->course->video_url)
+                                        @if($item->course->coursedetails[0]->content)
                                             @php
                                                 $videoId = '';
-                                                if (preg_match('/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/', $item->course->video_url, $match)) {
+                                                if (preg_match('/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/', $item->course->coursedetails[0]->content, $match)) {
                                                     $videoId = $match[1];
                                                 }
                                             @endphp
@@ -26,14 +26,7 @@
                                                 <img src="https://img.youtube.com/vi/{{ $videoId }}/mqdefault.jpg" 
                                                     alt="{{ $item->course->name }}"
                                                     class="w-full md:w-32 h-auto md:h-24 object-cover rounded-lg shadow-sm">
-                                                <div class="absolute inset-0 flex items-center justify-center">
-                                                    <div class="w-10 h-10 bg-indigo-600/80 rounded-full flex items-center justify-center">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
-                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                                        </svg>
-                                                    </div>
-                                                </div>
+   
                                             </div>
                                         @else
                                             <div class="w-full md:w-32 h-24 bg-gradient-to-r from-indigo-600 to-blue-600 rounded-lg flex items-center justify-center shadow-sm">

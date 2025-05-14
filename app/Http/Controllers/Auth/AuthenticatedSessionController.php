@@ -29,7 +29,7 @@ class AuthenticatedSessionController extends Controller
         $req->session()->regenerate();
 
         if ($role === 'Admin') {
-            return redirect()->intended(route('admin.dashboard', absolute: false));
+            return redirect()->intended(route('admin.orders', absolute: false));
         }
 
         return redirect()->intended(route('welcome', absolute: false));

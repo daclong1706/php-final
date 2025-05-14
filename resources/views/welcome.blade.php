@@ -1,5 +1,5 @@
 <x-app-layout>
-    <div class="pt-16">
+    <div >
         <!-- Hero Section -->
         <section class="relative overflow-hidden">
             <!-- Background Image with Overlay -->

@@ -21,6 +21,7 @@ class CourseController extends Controller
         return view('course.show', compact('course'));
     }
 
+
     public function search(Request $request)
     {
         $query = $request->input('query');
@@ -55,5 +56,12 @@ class CourseController extends Controller
             ->findOrFail($course_id);
 
         return view('profile.course.show', compact('course'));
+    }
+    public function startLearning($course_id): View
+    {
+        $course = Course::with(['category', 'coursedetails'])->notDeleted()
+            ->findOrFail($course_id);
+
+        return view('course.learning', compact('course'));
     }
 }
