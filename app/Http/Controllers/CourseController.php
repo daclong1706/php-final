@@ -46,10 +46,6 @@ class CourseController extends Controller
             ->with(['course.category'])
             ->get();
 
-        // $userId = auth()->id();
-
-        // $courses = $userId->courses()->with('category')->get();
-
         return view('course.index', compact('courses'));
     }
 

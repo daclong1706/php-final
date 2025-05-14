@@ -11,6 +11,7 @@ use App\Http\Controllers\WelcomeController;
 
 use App\Http\Controllers\Admin\AdminCourseController;
 use App\Http\Controllers\Admin\AdminCategoryController;
+use App\Http\Controllers\OrderController;
 
 // Route::prefix('admin')->middleware(['auth'])->group(function () {
 //     Route::redirect('/', '/admin/courses')->name('admin.dashboard');
@@ -28,6 +29,7 @@ Route::prefix('admin')->group(function () {
     Route::redirect('/', '/admin/courses')->name('admin.dashboard');
     Route::resource('courses', AdminCourseController::class)->names('admin.courses')->except('show');
     Route::resource('categories', AdminCategoryController::class)->names('admin.categories')->except(['show', 'destroy']);
+    Route::get('orders', [OrderController::class, 'index'])->name('admin.orders');
 });
 
 // Route::get('/', function () {
