@@ -52,4 +52,12 @@ class CourseController extends Controller
 
         return view('course.index', compact('courses'));
     }
+
+    public function showcourseuser($course_id): View
+    {
+        $course = Course::with(['category', 'coursedetails'])->notDeleted()
+            ->findOrFail($course_id);
+
+        return view('profile.course.show', compact('course'));
+    }
 }

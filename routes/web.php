@@ -55,6 +55,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/vnpay/return', [VNPayController::class, 'return'])->name('vnpay.return');
 
     Route::get('/profile/course', [CourseController::class, 'index'])->name('course.index');
+    Route::get('/profile/course/{course_id}', [CourseController::class, 'showcourseuser'])->name('profile.course.show');
 });
 
 // Route::post('/vnpay/ipn', [VNPayController::class, 'ipn'])->name('vnpay.ipn');
