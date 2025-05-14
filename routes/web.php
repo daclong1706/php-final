@@ -53,6 +53,8 @@ Route::middleware(['auth'])->group(function () {
 
     Route::post('/vnpay/create-payment', [VNPayController::class, 'createPayment'])->name('vnpay.create-payment');
     Route::get('/vnpay/return', [VNPayController::class, 'return'])->name('vnpay.return');
+
+    Route::get('/profile/course', [CourseController::class, 'index'])->name('course.index');
 });
 
 // Route::post('/vnpay/ipn', [VNPayController::class, 'ipn'])->name('vnpay.ipn');

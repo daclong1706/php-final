@@ -38,6 +38,11 @@ class Course extends Model
         return $this->hasMany(CourseDetail::class);
     }
 
+    public function courseuser()
+    {
+        return $this->hasMany(CourseUser::class);
+    }
+
     public function scopeNotDeleted($query)
     {
         return $query->where('is_deleted', false);

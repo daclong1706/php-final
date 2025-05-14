@@ -6,6 +6,7 @@ use App\Models\Course;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Category;
+use App\Models\CourseUser;
 use Illuminate\View\View;
 
 
@@ -36,5 +37,19 @@ class CourseController extends Controller
         }
 
         return view('components.course.course-card-list', ['courses' => $courses->get()])->render();
+    }
+
+    // course list of user
+    public function index(): View
+    {
+        $courses = CourseUser::where('user_id', auth()->id())
+            ->with(['course.category'])
+            ->get();
+
+        // $userId = auth()->id();
+
+        // $courses = $userId->courses()->with('category')->get();
+
+        return view('course.index', compact('courses'));
     }
 }
