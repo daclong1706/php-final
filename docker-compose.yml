@@ -37,8 +37,8 @@ services:
     #   - "443:443"
     volumes:
       - ./nginx.conf:/etc/nginx/conf.d/default.conf
-    #   - ./certbot/etc:/etc/letsencrypt:ro
-    #   - ./certbot/www:/var/www/certbot:ro
+      - ./certbot/etc:/etc/letsencrypt:ro
+      - ./certbot/www:/var/www/certbot:ro
     networks:
       - laravel
 
