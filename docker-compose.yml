@@ -39,17 +39,17 @@ services:
     networks:
       - laravel
 
-#   node:
-#     image: node:20
-#     container_name: laravel_node
-#     working_dir: /var/www
-#     volumes:
-#       - .:/var/www
-#     command: sh -c "npm install && npm run dev"
-#     ports:
-#       - "5173:5173"
-#     networks:
-#       - laravel
+  node:
+    image: node:20
+    container_name: laravel_node
+    working_dir: /var/www
+    volumes:
+      - .:/var/www
+    command: sh -c "npm install && npm run dev"
+    ports:
+      - "5173:5173"
+    networks:
+      - laravel
 
 networks:
   laravel:

@@ -9,7 +9,7 @@ export default defineConfig({
         }),
     ],
     server: {
-        host: '0.0.0.0',
+        host: 'php.aaateammm.online',
         port: 5173,
         allowedHosts: [
             'php.aaateammm.online', // Thêm domain của bạn
