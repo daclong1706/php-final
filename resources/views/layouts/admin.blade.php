@@ -73,7 +73,7 @@
                     <li>
                         <a href="{{ route('admin.orders') }}"
                             class="flex items-center p-3 rounded-lg hover:bg-gray-100 transition-all duration-200 {{ request()->routeIs('admin.orders') ? 'bg-purple-100 text-purple-700 shadow-sm' : 'text-gray-700' }}">
-                            <i class="fas fa-package w-5 h-5 mr-3 {{ request()->routeIs('admin.orders.*') ? 'text-purple-600' : 'text-gray-500' }}"></i>
+                            <i class="fa-solid fa-cube w-5 h-5 mr-3 {{ request()->routeIs('admin.orders.*') ? 'text-purple-600' : 'text-gray-500' }}"></i>
                             <span class="text-sm font-medium">Orders</span>
                         </a>
                     </li>
@@ -92,17 +92,17 @@
                         </a>
                     </li>
 
-                    
-                        <form method="POST" action="{{ route('logout') }}">
-                            @csrf
-                            <x-dropdown-link :href="route('logout')"
-                                onclick="event.preventDefault();
+
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <x-dropdown-link :href="route('logout')"
+                            onclick="event.preventDefault();
                                                 this.closest('form').submit();"
                             class="flex items-center p-3 rounded-lg hover:bg-gray-100 transition-all duration-200 text-gray-700">
                             <i class="fas fa-sign-out-alt w-5 h-5 mr-3 text-gray-500"></i>
                             <span class="text-sm font-medium">Logout</span>
-                            </x-dropdown-link>
-                        </form>
+                        </x-dropdown-link>
+                    </form>
 
                 </ul>
             </div>

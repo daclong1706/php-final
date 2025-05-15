@@ -1,11 +1,11 @@
 <x-app-layout>
-    <div >
+    <div>
         <!-- Hero Section -->
         <section class="relative overflow-hidden">
             <!-- Background Image with Overlay -->
             <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1501504905252-473c47e087f8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80')"></div>
             <div class="absolute inset-0 bg-gradient-to-r from-blue-900/90 to-indigo-900/80"></div>
-            
+
             <div class="relative z-10 py-20 md:py-28">
                 <div class="container mx-auto px-4 md:px-6 lg:px-8">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
@@ -31,7 +31,7 @@
                                     Đăng ký miễn phí
                                 </a>
                             </div>
-                            
+
                             <div class="flex items-center space-x-4 text-sm">
                                 <div class="flex -space-x-2">
                                     <img src="https://randomuser.me/api/portraits/women/12.jpg" class="w-8 h-8 rounded-full border-2 border-white" alt="User">
@@ -69,7 +69,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <!-- Decorative Elements -->
             <div class="absolute bottom-0 left-0 w-full overflow-hidden">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none" class="w-full h-16 text-white">
@@ -109,7 +109,7 @@
                     <h2 class="text-3xl font-bold text-gray-800 mb-4">Tại sao chọn EduCourse?</h2>
                     <p class="text-lg text-gray-600 max-w-2xl mx-auto">Chúng tôi cung cấp nền tảng học tập trực tuyến hàng đầu với nhiều ưu điểm vượt trội</p>
                 </div>
-                
+
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                     <div class="bg-white rounded-xl shadow-sm hover:shadow-md transition-all duration-300 p-8 text-center group hover:scale-105 transform">
                         <div class="w-16 h-16 bg-indigo-100 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-indigo-600 transition-colors duration-300">
@@ -120,7 +120,7 @@
                         <h3 class="text-xl font-semibold text-gray-800 mb-3 group-hover:text-indigo-600 transition-colors duration-300">Nội dung chất lượng cao</h3>
                         <p class="text-gray-600">Khóa học được biên soạn bởi các giảng viên hàng đầu với nội dung cập nhật và phù hợp với nhu cầu học tập hiện đại.</p>
                     </div>
-                    
+
                     <div class="bg-white rounded-xl shadow-sm hover:shadow-md transition-all duration-300 p-8 text-center group hover:scale-105 transform">
                         <div class="w-16 h-16 bg-indigo-100 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-indigo-600 transition-colors duration-300">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-indigo-600 group-hover:text-white transition-colors duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -130,7 +130,7 @@
                         <h3 class="text-xl font-semibold text-gray-800 mb-3 group-hover:text-indigo-600 transition-colors duration-300">Học mọi lúc, mọi nơi</h3>
                         <p class="text-gray-600">Truy cập khóa học từ bất kỳ thiết bị nào, bất kỳ lúc nào. Học theo tốc độ của riêng bạn và lặp lại bài học khi cần.</p>
                     </div>
-                    
+
                     <div class="bg-white rounded-xl shadow-sm hover:shadow-md transition-all duration-300 p-8 text-center group hover:scale-105 transform">
                         <div class="w-16 h-16 bg-indigo-100 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-indigo-600 transition-colors duration-300">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-indigo-600 group-hover:text-white transition-colors duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -143,7 +143,7 @@
                 </div>
             </div>
         </section>
-        
+
         <!-- Categories Section -->
         <section class="py-16 bg-white">
             <div class="container mx-auto px-4 md:px-6 lg:px-8">
@@ -151,7 +151,7 @@
                     <h2 class="text-3xl font-bold text-gray-800 mb-4">Khám phá theo danh mục</h2>
                     <p class="text-lg text-gray-600 max-w-2xl mx-auto">Tìm kiếm khóa học phù hợp với nhu cầu học tập của bạn</p>
                 </div>
-                
+
                 <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                     <a href="#" class="bg-white rounded-xl shadow-sm hover:shadow-md transition-all duration-300 p-6 text-center group hover:scale-105 transform border border-gray-100">
                         <div class="w-16 h-16 bg-indigo-100 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-indigo-600 transition-colors duration-300">
@@ -162,7 +162,7 @@
                         <h3 class="font-semibold text-gray-800 mb-1 group-hover:text-indigo-600 transition-colors duration-300">Toán học</h3>
                         <p class="text-sm text-gray-500">125 khóa học</p>
                     </a>
-                    
+
                     <a href="#" class="bg-white rounded-xl shadow-sm hover:shadow-md transition-all duration-300 p-6 text-center group hover:scale-105 transform border border-gray-100">
                         <div class="w-16 h-16 bg-indigo-100 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-indigo-600 transition-colors duration-300">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-indigo-600 group-hover:text-white transition-colors duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -172,7 +172,7 @@
                         <h3 class="font-semibold text-gray-800 mb-1 group-hover:text-indigo-600 transition-colors duration-300">Vật lý</h3>
                         <p class="text-sm text-gray-500">98 khóa học</p>
                     </a>
-                    
+
                     <a href="#" class="bg-white rounded-xl shadow-sm hover:shadow-md transition-all duration-300 p-6 text-center group hover:scale-105 transform border border-gray-100">
                         <div class="w-16 h-16 bg-indigo-100 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-indigo-600 transition-colors duration-300">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-indigo-600 group-hover:text-white transition-colors duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -182,7 +182,7 @@
                         <h3 class="font-semibold text-gray-800 mb-1 group-hover:text-indigo-600 transition-colors duration-300">Hóa học</h3>
                         <p class="text-sm text-gray-500">87 khóa học</p>
                     </a>
-                    
+
                     <a href="#" class="bg-white rounded-xl shadow-sm hover:shadow-md transition-all duration-300 p-6 text-center group hover:scale-105 transform border border-gray-100">
                         <div class="w-16 h-16 bg-indigo-100 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-indigo-600 transition-colors duration-300">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-indigo-600 group-hover:text-white transition-colors duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -193,7 +193,7 @@
                         <p class="text-sm text-gray-500">156 khóa học</p>
                     </a>
                 </div>
-                
+
                 <div class="text-center mt-10">
                     <a href="{{ route('category.index') }}" class="inline-flex items-center text-indigo-600 hover:text-indigo-800 font-medium">
                         Xem tất cả danh mục
@@ -204,7 +204,7 @@
                 </div>
             </div>
         </section>
-        
+
         <!-- Testimonials Section -->
         <section class="py-16 bg-gray-50">
             <div class="container mx-auto px-4 md:px-6 lg:px-8">
@@ -212,7 +212,7 @@
                     <h2 class="text-3xl font-bold text-gray-800 mb-4">Học viên nói gì về chúng tôi</h2>
                     <p class="text-lg text-gray-600 max-w-2xl mx-auto">Trải nghiệm học tập từ những học viên đã tham gia khóa học</p>
                 </div>
-                
+
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                     <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300 border border-gray-100">
                         <div class="flex items-center mb-4">
@@ -244,7 +244,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300 border border-gray-100">
                         <div class="flex items-center mb-4">
                             <div class="flex text-yellow-400 mr-2">
@@ -275,7 +275,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300 border border-gray-100">
                         <div class="flex items-center mb-4">
                             <div class="flex text-yellow-400 mr-2">
@@ -309,7 +309,7 @@
                 </div>
             </div>
         </section>
-        
+
         <!-- CTA Section -->
         <section class="py-16 bg-gradient-to-r from-blue-900 to-indigo-900 text-white">
             <div class="container mx-auto px-4 md:px-6 lg:px-8">
