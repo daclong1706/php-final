@@ -14,9 +14,8 @@ export default defineConfig({
         host: '0.0.0.0',
         port: 5173,
         hmr: {
-            protocol: 'wss',
             host: 'php.aaateammm.online',
-            clientPort: 443,
+            port: 5173,
         },
         allowedHosts: [
             'php.aaateammm.online',
