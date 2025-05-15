@@ -6,19 +6,19 @@ export default defineConfig({
         laravel({
             input: ['resources/css/app.css', 'resources/js/app.js'],
             refresh: true,
+            hot: true,
             detectTls: false,
-            devServer: {
-                host: '0.0.0.0',
-                port: 5173,
-            },
         }),
     ],
     server: {
         host: '0.0.0.0',
         port: 5173,
+        hmr: {
+            host: 'php.aaateammm.online',
+            port: 5173,
+        },
         allowedHosts: [
-            'php.aaateammm.online', // Thêm domain của bạn
-            'www.php.aaateammm.online', // Thêm nếu dùng www
+            'php.aaateammm.online',
         ],
     },
 });
