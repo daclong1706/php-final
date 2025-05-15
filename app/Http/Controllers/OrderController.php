@@ -16,11 +16,20 @@ class OrderController extends Controller
             ->orderByDesc('id')
             ->get();
 
+        // $totalPaidAmount = $orderDetails->filter(function ($detail) {
+        //     return $detail->order->status == 1;
+        // })->sum(function ($detail) {
+        //     return $detail->order->amount ?? 0;
+        // });
         $totalPaidAmount = $orderDetails->filter(function ($detail) {
-            return $detail->order->status == 1;
-        })->sum(function ($detail) {
-            return $detail->order->amount ?? 0;
-        });
+            return $detail->order && $detail->order->status == 1;
+        })
+            ->unique(function ($detail) {
+                return $detail->order_id;
+            })
+            ->sum(function ($detail) {
+                return $detail->order->amount ?? 0;
+            });
 
         return view('admin.orders.index', compact('orderDetails', 'totalPaidAmount'));
     }
