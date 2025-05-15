@@ -57,7 +57,7 @@
                         @enderror
                     </div>
                     <div class="mb-4">
-                        <label for="price" class="block text-gray-700 font-medium mb-2">Price ($)</label>
+                        <label for="price" class="block text-gray-700 font-medium mb-2">Price (VND)</label>
                         <input type="number" name="price" id="price" step="0.01" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-200 focus:border-purple-500 transition-all @error('price') border-red-500 @enderror" value="{{ old('price', $selectedCourse->price) }}">
                         @error('price')
                         <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
@@ -178,7 +178,7 @@
                         <i class="fas fa-trash-alt"></i>
                     </button>
                 </div>
-                
+
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                     <div>
                         <label for="course_details_${index}_name" class="block text-gray-700 font-medium mb-2">Detail Name</label>

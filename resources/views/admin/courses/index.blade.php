@@ -65,7 +65,7 @@
                         <span class="mr-2">|</span>
                         <span>Grade: {{ $selectedCourse->grade }}</span>
                         <span class="mx-2">|</span>
-                        <span class="font-medium text-green-600">${{ $selectedCourse->price }}</span>
+                        <span class="font-medium text-green-600">{{ $selectedCourse->price }} VND</span>
                     </div>
                 </div>
                 <div class="flex space-x-2">
