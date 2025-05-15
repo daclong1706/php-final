@@ -33,11 +33,9 @@ services:
     container_name: laravel_web
     restart: unless-stopped
     ports:
-      - "80:80"
-      # - "443:443" # Bật nếu dùng SSL
+      - "81:80" # Ánh xạ port 81 (host) tới port 80 (container)
     volumes:
       - ./nginx.conf:/etc/nginx/conf.d/default.conf
-      # - ./ssl:/etc/nginx/ssl # Bật nếu dùng SSL
     networks:
       - laravel
 
